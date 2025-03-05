@@ -1,6 +1,6 @@
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "./getCurrentUser";
-const getConversations = async (conversationId: string) => {
+const getConversations = async () => {
     const currentUser = await getCurrentUser();
 
     if (!currentUser?.id) {

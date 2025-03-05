@@ -6,12 +6,12 @@ import { NextResponse } from "next/server";
 interface IParams {
     conversationId?: string;
 }
-export async function DELETE(
+export async function POST(
     request: Request,
-    conversationId: string
+    { params }: { params: IParams }
 ) {
     try {
-        //const { conversationId } = params;
+        const { conversationId } = params;
         const currentUser = await getCurrentUser();
         if (!currentUser?.id) {
             return new NextResponse('Unauthorized', { status: 401 });

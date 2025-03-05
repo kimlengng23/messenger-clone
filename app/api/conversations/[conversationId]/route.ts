@@ -8,10 +8,10 @@ interface IParams {
 }
 export async function DELETE(
     request: Request,
-    { params }: { params: IParams }
+    conversationId: string
 ) {
     try {
-        const { conversationId } = params;
+        //const { conversationId } = params;
         const currentUser = await getCurrentUser();
         if (!currentUser?.id) {
             return new NextResponse('Unauthorized', { status: 401 });

@@ -3,15 +3,13 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import { pusherServer } from "@/app/libs/pusher";
 import { NextResponse } from "next/server";
 
-interface IParams {
-    conversationId?: string;
-}
-export async function POST(
+
+export async function DELETE(
     request: Request,
-    { params }: { params: IParams }
+    { params }: { params: Promise<{ conversationId?: string }> }
 ) {
     try {
-        const { conversationId } = params;
+        const { conversationId } = await params;
         const currentUser = await getCurrentUser();
         if (!currentUser?.id) {
             return new NextResponse('Unauthorized', { status: 401 });
